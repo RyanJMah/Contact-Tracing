@@ -9,5 +9,3 @@ data = {}
 data["latitude"] = res["latitude"]
 data["longitude"] = res["longitude"]
 data["current_time"] = res["time_zone"]["current_time"]
-
-print(data)
