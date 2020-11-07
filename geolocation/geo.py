@@ -1,13 +1,18 @@
 import json
 import requests
 
-response = requests.get("https://api.ipgeolocation.io/ipgeo?apiKey=aaaf819d25a84c3c84f09ac62f39c8d8")
+def location():
 
-res = response.json()
-data = {}
+	response = requests.get("https://api.ipgeolocation.io/ipgeo?apiKey=aaaf819d25a84c3c84f09ac62f39c8d8")
 
-data["latitude"] = res["latitude"]
-data["longitude"] = res["longitude"]
-data["current_time"] = res["time_zone"]["current_time"]
+	res = response.json()
+	data = {}
 
-print(data)
+	data["latitude"] = res["latitude"]
+	data["longitude"] = res["longitude"]
+	data["current_time"] = res["time_zone"]["current_time"]
+
+	return data
+
+
+
