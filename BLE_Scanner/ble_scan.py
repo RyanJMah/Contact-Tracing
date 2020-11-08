@@ -39,7 +39,7 @@ class BLE_Tracker(threading.Thread):
 		for r in iter(self.p1.stdout.readline, ""):
 			if not(self.running):
 				break
-			
+
 			response = r.decode()
 			if self._decode_response(response) != []:
 				self.out_buffer.put(self._decode_response(response))
@@ -67,4 +67,3 @@ def main():
 
 if __name__ == "__main__":
 	main()
-
