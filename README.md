@@ -13,6 +13,8 @@ Running Instructions:
 To run this program, download all dependencies in "requirements.txt" using pip. You will also need to be running linux, and have the "bluetoothctl"
 utility installed.
 
+To run the Bluetooth scanner, cd into "BLE_Scanner" and run "report_incidents.py". To run the GUI, cd into "GUI and Code Generator" and run "GUI.py".
+
 
 GUI.py:
 Once the program is run, a GUI will pop up
