@@ -93,23 +93,3 @@ def lookup_incident(uuid1, uuid2, distance):
 
     return df
 
-def main():
-    db = mysql.connector.connect(
-        host = "34.67.23.158",
-        user = "root",
-        password = "password123",
-        database = "db"
-    )
-
-    df = pd.read_sql("SELECT * FROM users", db)
-
-    print(df)
-
-    print(specify('users', 'username', "'Johnny Sins'"))
-
-if __name__ == "__main__":
-<<<<<<< HEAD
-    main()
-
-=======
->>>>>>> 0e21ed80b688ce90dc7fca1ec6087ee65b8986c0
