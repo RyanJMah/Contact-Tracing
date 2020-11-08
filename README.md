@@ -36,14 +36,16 @@ This program asks for the user's mac address then it will return the positive te
 
 
 Database (sql.py):
-Google Cloud SQL database was used to store data of users and incidents. The database is composed of two tables, a users table and an incidents table. 
+A Google Cloud SQL database is used to store data of users and incidents. The database is composed of two tables, a users table and an incidents table. 
 The users table stores the mac addresses of the users device along with a boolean representing the users covid test results. If there are no test results, the default value is False.
 The incidents table stores data on incidents where people are 6-feet or closer. When such an incident occurs, the database will store the mac addresss of both users, the RSSI strength that was reported,
 and will utilize a geolocation API to store the latitide, longitiude, and date/time of the incident. The database can add users, add incidents, update the user's covid status, update the mac address, and provide a list of people that an user has been in contact with.
 
 
 Geolocation (geo.py):
-Geolocation API is used to report important information when an incident occurs. This includes the users longitude, latitude and time of incident. When an incident occurs, the program calls upon the geolocation API and the json information is transfered into the database.
+A Geolocation REST API is used to report important information when an incident occurs. The following api was used: https://ipgeolocation.io/
+
+The data taken from the API includes the user's longitude, latitude and time of incident. When an incident occurs. An http request is made to the API. The json data which is returned by the API is converted to a dictionary, which is then transfered to the SQL database.
 
 
 BLE Scanner:
