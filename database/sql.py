@@ -29,7 +29,7 @@ def main():
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "password123",
+        password = "",
         database = "db"
     )
     
