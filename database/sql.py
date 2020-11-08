@@ -22,7 +22,7 @@ def add_user(uuid, username, password):
     cursor.close()
 
     db.close()
-    return 
+    return
 
 def read_user():
 
