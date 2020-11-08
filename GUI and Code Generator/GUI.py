@@ -1,8 +1,13 @@
 from tkinter import *
 import sys
+import os
 
 #Path to database directory
-sys.path.insert(1, '/home/rova/Documents/Contact-Tracing/database')
+
+THIS_DIR = os.path.dirname(os.path.abspath(__file__))
+PARENT_DIR = os.path.dirname(THIS_DIR)
+
+sys.path.insert(1, f"{PARENT_DIR}/database")
 from sql import *
 
 class GUI :
