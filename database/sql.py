@@ -144,5 +144,4 @@ def close_contacts(mac_adr):
 
         if close_contact == "Close Contact":
            break
-    return(close_contact)
-    
+    return(close_contact)   

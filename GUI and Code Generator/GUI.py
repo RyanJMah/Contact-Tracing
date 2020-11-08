@@ -74,6 +74,7 @@ class GUI :
 
     def refresh(self):
         self.UpdateStaus(close_contacts(self.Usermac_adr))
+        root.after(60000, self.refresh)
 
     def UpdateStaus(self, stat = "Safe"):
         #Updates to tell the user if they're safe or not
@@ -84,4 +85,5 @@ class GUI :
 
 root = Tk()
 gui = GUI(root)
+root.after(60000, gui.refresh)
 root.mainloop()
