@@ -118,20 +118,6 @@ def Update_mac_adr(mac_adr,new_mac_adr):
                 )
     db.commit()
 
-    cursor.execute(f'''
-                UPDATE db.incidents
-                SET mac_adr1 = '{new_mac_adr}'
-                WHERE mac_adr1 = '{mac_adr}\''''
-                )
-    db.commit()
-
-    cursor.execute(f'''
-                UPDATE db.incidents
-                SET mac_adr2 = '{new_mac_adr}'
-                WHERE mac_adr2 = '{mac_adr}\''''
-                )
-    db.commit()
-
     db.close()
     return
 
