@@ -10,9 +10,6 @@ PARENT_DIR = os.path.dirname(THIS_DIR)
 sys.path.insert(1, f"{PARENT_DIR}/database")
 from sql import *
 
-sys.path.insert(1, f"{PARENT_DIR}/geolocation")
-from geo import *
-
 class GUI :
     def __init__(self,master):
         self.Covid_Test_Code = ''
