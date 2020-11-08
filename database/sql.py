@@ -84,26 +84,8 @@ def Update_user_covid_status(mac_adr,covid_status):
                 )
     db.commit()
 
-def Update_mac_adr(mac_adr,new_mac_adr):
-    db = mysql.connector.connect(
-        host = "34.67.23.158",
-        user = "root",
-        password = "password123",
-        database = "db"
-    )
-
-    cursor = db.cursor()
-    cursor.execute(f'''
-                UPDATE db.users
-                SET mac_adr = '{new_mac_adr}'
-                WHERE mac_adr = '{mac_adr}\''''
-                )
-    db.commit()
-
 
 
 
 if __name__ == "__main__":
-    print(read_user())
-    #Update_mac_adr('Daddy', 'UwU')
-    #print(read_user())
+    pass
