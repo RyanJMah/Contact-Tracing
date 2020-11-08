@@ -2,7 +2,6 @@ from tkinter import *
 import sys
 import os
 
-#Path to database directory
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 PARENT_DIR = os.path.dirname(THIS_DIR)
@@ -53,8 +52,6 @@ class GUI :
         self.currentUUID.config(text=self.UserUUID)
         self.Covid_Test_Code = hash(self.UserUUID)
 
-
-
     def CheckCode(self,event):
         #Checks if the code is correct
         if self.Covid_Test_Code == '':
@@ -76,7 +73,6 @@ class GUI :
             self.Status.config(text="GET TESTED", fg = "red")
         else:
             self.Status.config(text="Safe", fg = "green")
-
 
 root = Tk()
 gui = GUI(root)
