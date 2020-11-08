@@ -45,7 +45,7 @@ def read_user(mac_adr = '', has_covid = None):
     db.close()
     return df
 
-def add_incident(mac_adr1, mac_adr2, distance, longitude, latitude, date_and_time):
+def add_incident(mac_adr1, mac_adr2, rssi, longitude, latitude, date_and_time):
 
     db = mysql.connector.connect(
         host = "34.67.23.158",
@@ -55,8 +55,8 @@ def add_incident(mac_adr1, mac_adr2, distance, longitude, latitude, date_and_tim
     )
 
     cursor = db.cursor()
-    sql = "INSERT INTO incidents(mac_adr1, mac_adr2, distance, longitude, latitude, date_and_time) VALUES (%s, %s, %s, %s, %s, %s)"
-    val = (mac_adr1, mac_adr2, distance, longitude, latitude, date_and_time)
+    sql = "INSERT INTO incidents(mac_adr1, mac_adr2, rssi, longitude, latitude, date_and_time) VALUES (%s, %s, %s, %s, %s, %s)"
+    val = (mac_adr1, mac_adr2, rssi, longitude, latitude, date_and_time)
     cursor.execute(sql, val)
     db.commit()
     cursor.close()
@@ -64,6 +64,7 @@ def add_incident(mac_adr1, mac_adr2, distance, longitude, latitude, date_and_tim
     db.close()
     return
 
+<<<<<<< HEAD
 <<<<<<< HEAD
 def read_incident():
     db = mysql.connector.connect(
@@ -81,6 +82,9 @@ def lookup_user(mac_adr):
 =======
 def read_incident(mac_adr1 = '', mac_adr2 = '', distance = ''):
 >>>>>>> 0ec31723714de5eeef6e9cc0ebbe646ec1d835f4
+=======
+def read_incident(mac_adr1 = '', mac_adr2 = '', rssi = ''):
+>>>>>>> 2c957d83b3775e66e7957fbe4a308696cf1232ce
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
@@ -88,12 +92,12 @@ def read_incident(mac_adr1 = '', mac_adr2 = '', distance = ''):
         database = "db"
     )
     #call like:
-    #read_incident(mac_adr1 = '', mac_adr1 = '', distance = '')
-    if (mac_adr1 == '' and mac_adr2 == '' and distance == ''):
+    #read_incident(mac_adr1 = '', mac_adr1 = '', rssi = '')
+    if (mac_adr1 == '' and mac_adr2 == '' and rssi == ''):
         df = pd.read_sql("SELECT * FROM incidents", db)
-    elif(mac_adr1 == '' and mac_adr2 == '' and distance != ''):
-        df = pd.read_sql(f"SELECT * FROM incidents WHERE distance <= {distance}", db)
-    elif(mac_adr1 != '' and mac_adr2 != '' and distance == ''):
+    elif(mac_adr1 == '' and mac_adr2 == '' and rssi != ''):
+        df = pd.read_sql(f"SELECT * FROM incidents WHERE rssi <= {rssi}", db)
+    elif(mac_adr1 != '' and mac_adr2 != '' and rssi == ''):
         df = pd.read_sql(f"SELECT * FROM incidents WHERE mac_adr1 = '{mac_adr1}' AND mac_adr2 = '{mac_adr2}'", db)
 
     db.close()
@@ -142,4 +146,9 @@ def Update_mac_adr(mac_adr,new_mac_adr):
 =======
     db.close()
     return
+<<<<<<< HEAD
 >>>>>>> 0ec31723714de5eeef6e9cc0ebbe646ec1d835f4
+=======
+
+print(read_incident())
+>>>>>>> 2c957d83b3775e66e7957fbe4a308696cf1232ce
