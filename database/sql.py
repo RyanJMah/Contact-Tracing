@@ -5,7 +5,7 @@ import pandas as pd
 #sudo pip3 install mysql-connector-python
 #sudo pip3 install pandas
 
-def add_user(uuid, has_covid):
+def add_user(mac_adr, has_covid):
     
     db = mysql.connector.connect(
         host = "34.67.23.158",
@@ -15,8 +15,8 @@ def add_user(uuid, has_covid):
     )
 
     cursor = db.cursor()
-    sql = "INSERT INTO users(uuid, has_covid) VALUES (%s, %s)"
-    val = (uuid, has_covid)
+    sql = "INSERT INTO users(mac_adr, has_covid) VALUES (%s, %s)"
+    val = (mac_adr, has_covid)
     cursor.execute(sql, val)
     db.commit()
     cursor.close()
@@ -37,7 +37,7 @@ def read_user():
     db.close()
     return df
 
-def add_incident(uuid1, uuid2, distance, longitude, latitude, date_and_time):
+def add_incident(mac_adr1, mac_adr2, distance, longitude, latitude, date_and_time):
 
     db = mysql.connector.connect(
         host = "34.67.23.158",
@@ -47,8 +47,8 @@ def add_incident(uuid1, uuid2, distance, longitude, latitude, date_and_time):
     )
 
     cursor = db.cursor()
-    sql = "INSERT INTO incidents(uuid1, uuid2, distance, longitude, latitude, date_and_time) VALUES (%s, %s, %s, %s, %s, %s)"
-    val = (uuid1, uuid2, distance, longitude, latitude, date_and_time)
+    sql = "INSERT INTO incidents(mac_adr1, mac_adr2, distance, longitude, latitude, date_and_time) VALUES (%s, %s, %s, %s, %s, %s)"
+    val = (mac_adr1, mac_adr2, distance, longitude, latitude, date_and_time)
     cursor.execute(sql, val)
     db.commit()
     cursor.close()
@@ -68,7 +68,7 @@ def read_incident():
     db.close()
     return df
 
-def Update_user_covid_status(uuid,covid_status):
+def Update_user_covid_status(mac_adr,covid_status):
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
@@ -80,7 +80,23 @@ def Update_user_covid_status(uuid,covid_status):
     cursor.execute(f'''
                 UPDATE db.users
                 SET has_covid = {covid_status}
-                WHERE uuid = '{uuid}\''''
+                WHERE mac_adr = '{mac_adr}\''''
+                )
+    db.commit()
+
+def Update_mac_adr(mac_adr,new_mac_adr):
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+
+    cursor = db.cursor()
+    cursor.execute(f'''
+                UPDATE db.users
+                SET mac_adr = '{new_mac_adr}'
+                WHERE mac_adr = '{mac_adr}\''''
                 )
     db.commit()
 
@@ -88,4 +104,6 @@ def Update_user_covid_status(uuid,covid_status):
 
 
 if __name__ == "__main__":
-    
+    print(read_user())
+    #Update_mac_adr('Daddy', 'UwU')
+    #print(read_user())
