@@ -36,7 +36,7 @@ Geolocation:
 Geolocation API is used to report important information when an incident occurs. This includes the users longitude, latitude and time of incident. This information
 is added to database when incident occurs.
 
-
+BLE Scanner:
 
 
 
