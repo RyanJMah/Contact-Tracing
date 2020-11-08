@@ -1,7 +1,7 @@
 from tkinter import *
 import sys
 import os
-
+import hashlib
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 PARENT_DIR = os.path.dirname(THIS_DIR)
@@ -56,7 +56,8 @@ class GUI :
         Update_mac_adr(self.Usermac_adr, self.mac_adr.get())
         self.Usermac_adr = self.mac_adr.get()
         self.currentmac_adr.config(text=self.Usermac_adr)
-        self.Covid_Test_Code = hash(self.Usermac_adr)
+        code = hashlib.sha256(self.Usermac_adr.encode('utf-8'))
+        self.Covid_Test_Code = code.hexdigest()
 
     def CheckCode(self,event):
         #Checks if the code is correct

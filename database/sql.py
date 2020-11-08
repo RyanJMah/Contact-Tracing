@@ -10,7 +10,7 @@ def add_user(mac_adr, has_covid):
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
 
@@ -29,7 +29,7 @@ def read_user():
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
     df = pd.read_sql("SELECT * FROM users", db)
@@ -42,7 +42,7 @@ def add_incident(mac_adr1, mac_adr2, distance, longitude, latitude, date_and_tim
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
 
@@ -60,7 +60,7 @@ def read_incident():
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
     df = pd.read_sql("SELECT * FROM incidents", db)
@@ -123,6 +123,7 @@ def Update_mac_adr(mac_adr,new_mac_adr):
                 )
     db.commit()
 
+#def close_contacts():
 
-if __name__ == "__main__":
-    pass
+
+#if __name__ == "__main__":
