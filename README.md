@@ -22,7 +22,7 @@ under the input text box.
 If the user gets tested positive, their tester will provide them with a Positive Test Code. Once the code is inputted into the GUI
 the database will update and will notify everyone who was a close contact.
 
-Code Generator.py
+Code Generator.py: 
 This program asks for the user's mac address then it will return the Positive Test Code
 
 
