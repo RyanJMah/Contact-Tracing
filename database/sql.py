@@ -10,7 +10,7 @@ def add_user(uuid, has_covid):
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
 
@@ -29,7 +29,7 @@ def read_user():
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
     df = pd.read_sql("SELECT * FROM users", db)
@@ -42,7 +42,7 @@ def add_incident(uuid1, uuid2, distance, longitude, latitude, date_and_time):
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
 
@@ -60,7 +60,7 @@ def read_incident():
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
     df = pd.read_sql("SELECT * FROM incidents", db)
@@ -68,6 +68,25 @@ def read_incident():
     db.close()
     return df
 
+def update(table_name, column, new_value, id):
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+    cursor = db.cursor()
+    sql = f"UPDATE {table_name} SET {column} = %s WHERE id = %s"
+    val = (new_value, id)
+    cursor.execute(sql, val)
+    db.commit()
+    cursor.close()
 
+    db.close()
+    return
 
 if __name__ == "__main__":
+    add_user("nsadad", 1)
+    print(read_user())
+    update("users",'has_covid', 60, 4)
+    print(read_user())
