@@ -10,7 +10,7 @@ def add_user(uuid, has_covid):
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "password123",
+        password = "",
         database = "db"
     )
 
@@ -22,14 +22,14 @@ def add_user(uuid, has_covid):
     cursor.close()
 
     db.close()
-    return 
+    return
 
 def read_user():
 
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "password123",
+        password = "",
         database = "db"
     )
     df = pd.read_sql("SELECT * FROM users", db)
@@ -42,7 +42,7 @@ def add_incident(uuid1, uuid2, distance, longitude, latitude, date_and_time):
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "password123",
+        password = "",
         database = "db"
     )
 
@@ -60,7 +60,7 @@ def read_incident():
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "password123",
+        password = "",
         database = "db"
     )
     df = pd.read_sql("SELECT * FROM incidents", db)
@@ -108,5 +108,8 @@ def main():
     print(specify('users', 'username', "'Johnny Sins'"))
 
 if __name__ == "__main__":
+<<<<<<< HEAD
     main()
 
+=======
+>>>>>>> 0e21ed80b688ce90dc7fca1ec6087ee65b8986c0
