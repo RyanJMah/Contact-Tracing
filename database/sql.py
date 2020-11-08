@@ -1,10 +1,6 @@
 import mysql.connector
 import pandas as pd
 
-#sudo apt-get install mysql-client-core-8.0
-#sudo pip3 install mysql-connector-python
-#sudo pip3 install pandas
-
 def add_user(mac_adr, has_covid):
 
     db = mysql.connector.connect(
@@ -121,6 +117,21 @@ def Update_mac_adr(mac_adr,new_mac_adr):
                 WHERE mac_adr = '{mac_adr}\''''
                 )
     db.commit()
+
+    cursor.execute(f'''
+                UPDATE db.incidents
+                SET mac_adr1 = '{new_mac_adr}'
+                WHERE mac_adr1 = '{mac_adr}\''''
+                )
+    db.commit()
+
+    cursor.execute(f'''
+                UPDATE db.incidents
+                SET mac_adr2 = '{new_mac_adr}'
+                WHERE mac_adr2 = '{mac_adr}\''''
+                )
+    db.commit()
+
     db.close()
     return
 
