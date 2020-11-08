@@ -63,7 +63,7 @@ class GUI :
         if self.Covid_Test_Code == '':
             self.TestCodeValidity.config(text="Please Provide Your UUID", fg = "red")
         elif self.TestCode.get() == str(self.Covid_Test_Code):
-            self.TestCodeValidity.config(text="Code Valid, Warning Sent To " + str(self.close_contacts) + " Close Contacts", fg = "green")
+            self.TestCodeValidity.config(text="Code Valid, Warning Sent To " + str(self.close_contacts) + " Close Contacts", fg = "green")      
         else:
             self.TestCodeValidity.config(text="Incorrect Code", fg = "red")
 
