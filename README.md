@@ -18,15 +18,12 @@ To run the Bluetooth scanner, cd into "BLE_Scanner" and run "report_incidents.py
 
 GUI.py:
 Once the program is run, a GUI will pop up
-
 The status indicates whether the user was in close contact with someone who has been tested positive for covid-19.
 The status updates every 60 seconds. The user could also update their status instantly by clicking the Refresh Status button located at the bottom of the GUI.
-
 Your mac address is required so that the program can identify you. The mac address will be stored in a database.
-
 If you update your mac address, it will be updated in the database as well. The user's current mac address is shown under the input text box.
-
 If the user tests positive, their tester will provide them with a positive test code. Once the code is inputted into the GUI, the database will update and will notify everyone who was in close contact. This test code is for making sure that all cases reported are guaranteed to be correct for security purposes.
+
 
 Code Generator.py: 
 This program asks for the user's mac address then it will return the positive test code. Only qualified testing professionals are allowed access to this code generator.
