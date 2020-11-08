@@ -17,7 +17,6 @@ class GUI :
     def __init__(self,master):
         self.Covid_Test_Code = ''
         self.Usermac_adr = ''
-        self.close_contacts = 0
         root.geometry("300x150")
 
         #Text and Inputs
@@ -31,7 +30,7 @@ class GUI :
         self.TestCodeLabel = Label(root, text = "Positive Test Code: ", fg = "black")
         self.TestCode = Entry(root)
         self.TestCodeValidity = Label(root, text = "", fg = "black")
-        self.Refresh = Button(root, text = "Refresh" , fg = "black", command = self.refresh)
+        self.Refresh = Button(root, text = "Refresh Status" , fg = "black", command = self.refresh)
 
 
         #Plotting each item
@@ -65,7 +64,7 @@ class GUI :
         if self.Covid_Test_Code == '':
             self.TestCodeValidity.config(text="Please Provide Your Mac Address", fg = "red")
         elif self.TestCode.get() == str(self.Covid_Test_Code):
-            self.TestCodeValidity.config(text="Code Valid, Warning Sent To " + str(self.close_contacts) + " Close Contacts", fg = "green")
+            self.TestCodeValidity.config(text="Code Valid, Warning Sent To Close Contacts", fg = "green")
             Update_user_covid_status(self.Usermac_adr, 1)
         else:
             self.TestCodeValidity.config(text="Incorrect Code", fg = "red")
