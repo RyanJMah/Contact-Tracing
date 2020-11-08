@@ -79,6 +79,8 @@ def read_incident(mac_adr1 = '', mac_adr2 = '', rssi = ''):
         df = pd.read_sql(f"SELECT * FROM incidents WHERE rssi <= {rssi}", db)
     elif(mac_adr1 != '' and mac_adr2 != '' and rssi == ''):
         df = pd.read_sql(f"SELECT * FROM incidents WHERE mac_adr1 = '{mac_adr1}' AND mac_adr2 = '{mac_adr2}'", db)
+    elif(mac_adr1 != '' and mac_adr2 == '' and rssi == ''):
+        df = pd.read_sql(f"SELECT * FROM incidents WHERE mac_adr1 = '{mac_adr1}'", db)
 
     db.close()
     return df
@@ -119,3 +121,31 @@ def Update_mac_adr(mac_adr,new_mac_adr):
     db.commit()
     db.close()
     return
+
+def close_contacts(mac_adr):
+    list_of_incidents = read_incident(rssi = '69').values # Update rssi to 6ft value
+    list_of_users  = read_user().values
+    close_contact = "Safe"
+    for i in list_of_incidents:
+        if mac_adr == i[1]:
+            for j in list_of_users:
+                if i[2] == j[2] and j[3] == 0 :
+                    close_contact = "Close Contact"
+                    break
+        if close_contact == "Close Contact":
+            break
+    return(close_contact)
+    
+
+
+
+
+
+
+
+'''
+print(read_incident())
+print(read_user())
+print(read_incident(rssi = '69').values)
+print(close_contacts('test1'))
+'''

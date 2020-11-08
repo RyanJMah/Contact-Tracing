@@ -1,13 +1,8 @@
 from tkinter import *
 import sys
 import os
-<<<<<<< HEAD
-
-<<<<<<< HEAD:GUI/file.py
-=======
-=======
 import hashlib
->>>>>>> a117148a6c085399d32adc2753cb4130742c165a
+
 
 THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 PARENT_DIR = os.path.dirname(THIS_DIR)
@@ -18,7 +13,6 @@ from sql import *
 sys.path.insert(1, f"{PARENT_DIR}/geolocation")
 from geo import *
 
->>>>>>> 0ec31723714de5eeef6e9cc0ebbe646ec1d835f4:GUI and Code Generator/GUI.py
 class GUI :
     def __init__(self,master):
         self.Covid_Test_Code = ''
@@ -73,7 +67,6 @@ class GUI :
         elif self.TestCode.get() == str(self.Covid_Test_Code):
             self.TestCodeValidity.config(text="Code Valid, Warning Sent To " + str(self.close_contacts) + " Close Contacts", fg = "green")
             Update_user_covid_status(self.Usermac_adr, 1)
-
         else:
             self.TestCodeValidity.config(text="Incorrect Code", fg = "red")
 
