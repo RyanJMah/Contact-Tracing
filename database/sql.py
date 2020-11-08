@@ -10,7 +10,7 @@ def add_user(uuid, username, password):
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
 
@@ -29,7 +29,7 @@ def read_user():
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
     df = pd.read_sql("SELECT * FROM users", db)
@@ -42,7 +42,7 @@ def add_incident(uuid1, uuid2, distance, longitude, latitude, date_and_time):
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
 
@@ -60,7 +60,7 @@ def read_incident():
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "",
+        password = "password123",
         database = "db"
     )
     df = pd.read_sql("SELECT * FROM incidents", db)
