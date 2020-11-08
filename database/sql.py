@@ -68,23 +68,6 @@ def read_incident():
     db.close()
     return df
 
-def Update_user_covid_status(mac_adr,covid_status):
-    db = mysql.connector.connect(
-        host = "34.67.23.158",
-        user = "root",
-        password = "password123",
-        database = "db"
-    )
-
-    cursor = db.cursor()
-    cursor.execute(f'''
-                UPDATE db.users
-                SET has_covid = {covid_status}
-                WHERE mac_adr = '{mac_adr}\''''
-                )
-    db.commit()
-
-
 
 
 if __name__ == "__main__":
