@@ -33,6 +33,8 @@ devices measures to be -75dbm or highger. When such an incident occurs, the data
 and will utilize an geolocation API to store the longitiude, latitide and date/time of the incident.
 
 Geolocation:
+Geolocation API is used to report important information when an incident occurs. This includes the users longitude, latitude and time of incident. This information
+is added to database when incident occurs.
 
 
 
