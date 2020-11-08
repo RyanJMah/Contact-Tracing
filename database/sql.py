@@ -10,7 +10,7 @@ def add_user(mac_adr, has_covid):
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "password123",
+        password = "",
         database = "db"
     )
 
@@ -22,14 +22,14 @@ def add_user(mac_adr, has_covid):
     cursor.close()
 
     db.close()
-    return 
+    return
 
 def read_user():
 
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "password123",
+        password = "",
         database = "db"
     )
     df = pd.read_sql("SELECT * FROM users", db)
@@ -42,7 +42,7 @@ def add_incident(mac_adr1, mac_adr2, distance, longitude, latitude, date_and_tim
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "password123",
+        password = "",
         database = "db"
     )
 
@@ -60,7 +60,7 @@ def read_incident():
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
-        password = "password123",
+        password = "",
         database = "db"
     )
     df = pd.read_sql("SELECT * FROM incidents", db)
@@ -68,6 +68,60 @@ def read_incident():
     db.close()
     return df
 
+def lookup_user(mac_adr):
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+    df = pd.read_sql(f"SELECT * FROM user WHERE mac_adr = {mac_adr}", db)
+
+    db.close()
+    return df
+
+def lookup_incident(mac_adr1, mac_adr2, distance):
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+    
+    df = pd.read_sql(f"SELECT * FROM user WHERE mac_adr1 = {mac_adr1} AND mac_adr2 = {mac_adr2} AND distance = {distance}")
+    db.close()
+
+def Update_user_covid_status(mac_adr,covid_status):
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+
+    cursor = db.cursor()
+    cursor.execute(f'''
+                UPDATE db.users
+                SET has_covid = {covid_status}
+                WHERE mac_adr = '{mac_adr}\''''
+                )
+    db.commit()
+
+def Update_mac_adr(mac_adr,new_mac_adr):
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+
+    cursor = db.cursor()
+    cursor.execute(f'''
+                UPDATE db.users
+                SET mac_adr = '{new_mac_adr}'
+                WHERE mac_adr = '{mac_adr}\''''
+                )
+    db.commit()
 
 
 if __name__ == "__main__":
