@@ -1,6 +1,10 @@
 import mysql.connector
 import pandas as pd
 
+#sudo apt-get install mysql-client-core-8.0
+#sudo pip3 install mysql-connector-python
+#sudo pip3 install pandas
+
 def add_user(uuid, username, password):
 
     db = mysql.connector.connect(
