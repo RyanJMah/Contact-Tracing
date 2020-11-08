@@ -74,7 +74,7 @@ class GUI :
         return(self.Usermac_adr)
 
     def refresh(self):
-        print("works")
+        self.UpdateStaus(close_contacts(self.Usermac_adr))
 
     def UpdateStaus(self, stat = "Safe"):
         #Updates to tell the user if they're safe or not
