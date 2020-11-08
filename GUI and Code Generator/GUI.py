@@ -1,4 +1,6 @@
 from tkinter import *
+import mysql.connector
+import pandas as pd
 
 
 class GUI :
@@ -19,6 +21,7 @@ class GUI :
         self.TestCodeLabel = Label(root, text = "Positive Test Code: ", fg = "black")
         self.TestCode = Entry(root)
         self.TestCodeValidity = Label(root, text = "", fg = "black")
+        self.Refresh = Button(root, text = "Refresh" , fg = "black", command = self.refresh)
         
 
         #Plotting each item
@@ -32,6 +35,7 @@ class GUI :
         self.TestCodeLabel.grid(row = 4, sticky = E)
         self.TestCode.grid(row = 4, column = 1, sticky = W)
         self.TestCodeValidity.grid(row = 5, column = 0, columnspan = 2, sticky = E)
+        self.Refresh.grid(row = 6)
 
         self.UUID.bind("<Return>" , self.UpdateUUID)
         self.TestCode.bind("<Return>" , self.CheckCode)
@@ -41,6 +45,7 @@ class GUI :
         self.UserUUID = self.UUID.get()
         self.currentUUID.config(text=self.UserUUID)
         self.Covid_Test_Code = hash(self.UserUUID)
+
         
     
     def CheckCode(self,event):
@@ -54,6 +59,9 @@ class GUI :
     
     def GetUUID(self):
         return(self.UserUUID)
+
+    def refresh(self):
+        print("works")
     
     def UpdateStaus(self, stat = "Safe"):
         #Updates to tell the user if they're safe or not
@@ -63,6 +71,73 @@ class GUI :
             self.Status.config(text="Safe", fg = "green")
 
 
+
+def add_user(uuid, username, password):
+
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+
+    cursor = db.cursor()
+    sql = "INSERT INTO users(uuid, username, password) VALUES (%s, %s, %s)"
+    val = (uuid, username, password)
+    cursor.execute(sql, val)
+    db.commit()
+    cursor.close()
+
+    db.close()
+    return 
+
+def read_user():
+
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+    df = pd.read_sql("SELECT * FROM users", db)
+
+    db.close()
+    return df
+
+def add_incident(uuid1, uuid2, distance, longitude, latitude, date_and_time):
+
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+
+    cursor = db.cursor()
+    sql = "INSERT INTO incidents(uuid1, uuid2, distance, longitude, latitude, date_and_time) VALUES (%s, %s, %s, %s, %s, %s)"
+    val = (uuid1, uuid2, distance, longitude, latitude, date_and_time)
+    cursor.execute(sql, val)
+    db.commit()
+    cursor.close()
+
+    db.close()
+    return
+
+def read_incident():
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+    df = pd.read_sql("SELECT * FROM incidents", db)
+
+    db.close()
+    return df
+
+
 root = Tk()
 gui = GUI(root)
 root.mainloop()
+
+
