@@ -6,7 +6,7 @@ import pandas as pd
 #sudo pip3 install pandas
 
 def add_user(uuid, has_covid):
-
+    
     db = mysql.connector.connect(
         host = "34.67.23.158",
         user = "root",
@@ -68,8 +68,24 @@ def read_incident():
     db.close()
     return df
 
+def Update_user_covid_status(uuid,covid_status):
+    db = mysql.connector.connect(
+        host = "34.67.23.158",
+        user = "root",
+        password = "password123",
+        database = "db"
+    )
+
+    cursor = db.cursor()
+    cursor.execute(f'''
+                UPDATE db.users
+                SET has_covid = {covid_status}
+                WHERE uuid = '{uuid}\''''
+                )
+    db.commit()
+
+
 
 
 if __name__ == "__main__":
- 
-
+    
