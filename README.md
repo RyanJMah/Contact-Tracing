@@ -10,7 +10,8 @@ Date: November 7-8, 2020
 
 
 Running Instructions:
-To run this program, 
+To run this program, download all dependencies in "requirements.txt" using pip. You will also need to be running linux, and have the "bluetoothctl"
+utility installed.
 
 
 GUI.py:
@@ -44,3 +45,10 @@ Geolocation API is used to report important information when an incident occurs.
 
 
 BLE Scanner:
+The BLE Scanner uses the linux utility "bluetoothctl" to poll nearby bluetooth devices for their mac address and instantaneous RSSI in dBm. How it achieves this, is it opens a subprocess which calls following command using the "subprocess" module in the Python standard library:
+       
+       "bluetoothctl scan on"
+       
+It then reads from the standard output of the subprocess via a subprocess PIPE object, parses the output, and converts it into a dictionary of mac addresses and RSSI values.
+
+The mac address and RSSI data is fed into the script "report_incidents.py", which runs in an infinite loop and reports an incident to the database when the RSSI of another device is within a certain threshold (>-70 dBm).
