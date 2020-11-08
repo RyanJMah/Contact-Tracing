@@ -119,5 +119,3 @@ def Update_mac_adr(mac_adr,new_mac_adr):
     db.commit()
     db.close()
     return
-
-print(read_incident())

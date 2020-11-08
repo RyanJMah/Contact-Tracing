@@ -1,2 +1,4 @@
+import hashlib
 mac_adr = input("Please input your UUID: ")
-print(hash(mac_adr))
+code = hashlib.sha256(mac_adr.encode('utf-8'))
+print(code.hexdigest())
